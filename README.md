@@ -6,21 +6,23 @@
 
 Steps are from: **[How to build your first Apache KafkaProducer application using Confluent](https://developer.confluent.io/tutorials/creating-first-apache-kafka-producer-application/confluent.html)**
 
-The numbers in black circles (❶, ❷, etc) refer to the step number in that Kafka tutorial at Confluent Developer.
+The steps below are in a slightly different order from the Tutorial on the Confluent Developer website, so there are numbers in black circles (❶, ❷, etc) that refer to the step number in that Kafka tutorial at Confluent Developer.
 
 ---
+
+
 
 ## Provision the cluster
 ❶
 1. Sign in to Confluent Cloud.
-2. Create a cluster. Name it …
+2. Create a cluster. Give it a descriptive name.
 
-> ⚠ **Warning:** GET THE LINK AND PROMO CODE FROM JOE SHORE!
+
 
 ## Download and set up the Confluent CLI
 ❹
-Install confluent CLI from here: [Install Confluent CLI](https://docs.confluent.io/confluent-cli/current/install.html#scripted-installation)
-Install to `~/bin`. Then use the follosing 
+Install confluent CLI from here: [Install Confluent CLI](https://docs.confluent.io/confluent-cli/current/install.html#scripted-installation).
+Install to `./bin`. Don't forget to add it to the `PATH` variable. Then use the following commands to login, allow auth using api-key and secret, explore environments and clusters: 
 
 `$ confluent login`
 
@@ -36,11 +38,16 @@ Install to `~/bin`. Then use the follosing
 
 `$ confluent kafka cluster use <cluster id>`
 
+
+
 ## Create a topic
  ❺ Create a topic in the Kafka cluster:
 ```
 confluent kafka topic create output-topic --partitions 1
 ```
+
+
+
 ## Initialise the project
 ❷
 
@@ -54,8 +61,6 @@ mkdir configuration
 ```
 ❸ Write config info in files
 `configuration/ccloud.properties` :
-
-> ⚠ **Warning:** DO NOT SHOW KEY & SECRET CREDENTIALS ON VIDEO !
 
 ```
 
@@ -95,9 +100,9 @@ output.topic.name=output-topic
 ```
 
 > ℹ Meaning of the dev.properties file:
-> - `key.serializer` and `value.serializer` 
-> - `acks`
-> - `output.topic.name`
+> - `key.serializer` and `value.serializer` . Tells the producer how to treat the key and the value when serializing. i.e. serialize them as strings.
+> - `acks`. Tells the producer to block on the send() method call, until the message is completely committed to the broker. i.e. min in-sync replicas have acknowledged the message.
+> - `output.topic.name`. The topic that we will be producing messages to.
 
 ❽ Combine the above two configs:
 ```

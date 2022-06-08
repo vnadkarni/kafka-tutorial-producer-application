@@ -1,4 +1,4 @@
-# How to build your first Apache KafkaConsumer application
+# How to build your first Apache Kafka Producer application
 
 ***Question:***
 
